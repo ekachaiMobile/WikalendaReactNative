@@ -1,45 +1,51 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  View,
+  Button,
+  Image
 } from 'react-native';
 
-export default class WikalendaNativeBase extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+import { StackNavigator } from "react-navigation";
+import { Root } from "native-base";
+// import {
+//   Container,
+//   Header,
+//   Title,
+//   Content,
+//   Button,
+//   Icon,
+//   Thumbnail,
+//   Text,
+//   Body,
+//   Left,
+//   Right,
+//   View
+// } from "native-base";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+import Home from "./screens/Home";
+
+const AppNavigator = StackNavigator(
+  {
+    Home: { screen: Home }
+  }, 
+
+  // { headerMode: 'none' },
+  {
+    initialRouteName: "Home",
+    contentOptions: {
+      activeTintColor: "#e91e63"
+    },
+    navigationOptions: {
+      title: <Image source={require("./../img/logo_header.png")}/>  ,
+      headerTitleStyle: { color: '#aaa' },
+
+    },
+  
+  }
+
+);
+
+export default () =>
+  <Root>
+    <AppNavigator />
+  </Root>;
