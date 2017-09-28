@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import {
   View,
   Button,
-  Image
+  Image,
+  Left,
+  Alert,
+  Text,
+  TouchableHighlight,
+  StyleSheet
 } from 'react-native';
 
 import { StackNavigator } from "react-navigation";
@@ -24,6 +29,14 @@ import { Root } from "native-base";
 
 import Home from "./screens/Home";
 
+const styles = StyleSheet.create({
+  buttonStyle: {
+      padding: 10,
+      backgroundColor: '#00000000',
+      opacity: 1.0
+  }
+});
+
 const AppNavigator = StackNavigator(
   {
     Home: { screen: Home }
@@ -38,11 +51,21 @@ const AppNavigator = StackNavigator(
     navigationOptions: {
       title: <Image source={require("./../img/logo_header.png")}/>  ,
       headerTitleStyle: { color: '#aaa' },
-
+      headerRight: <TouchableHighlight style={styles.buttonStyle}
+                                      onPress={() => { Alert.alert('Change Lan!');
+                                                      console.log("on Press!");
+                                      }} >
+                     <Image source={require("./../img/search_language_bt_language_thai.png")}/> 
+                    </TouchableHighlight>,
+                  // <Button title="Info"
+                  //         onPress={() => { Alert.alert('Change Lan!');
+                  //                         console.log("on Press!");
+                  //         }} >
+                  //  </Button>,
     },
-  
-  }
 
+  } 
+  
 );
 
 export default () =>

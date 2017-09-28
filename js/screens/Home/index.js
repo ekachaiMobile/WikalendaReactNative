@@ -13,6 +13,7 @@ import {
 export default class Home extends Component {
   render() {
     return (
+
       //   <Header>
       //   <Left>
       //     <Button transparent onPress={() => this.props.navigation.goBack()}>
