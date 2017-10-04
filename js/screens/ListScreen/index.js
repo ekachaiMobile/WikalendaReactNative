@@ -65,24 +65,40 @@ export default class ListScreen extends Component {
     }
   }
   componentDidMount() {
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
 
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({
-          isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson.movies),
-        }, function() {
-          // do something with new state
-          console.log('componentDidMount')
-        });
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = (e) => {
 
-        // console.log(responseJson)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      var jsonResponse = JSON.parse(request.responseText.jsonResponse)
+      console.log(jsonResponse)
+      // var Data = JSON.parse(request.responseText);
+      // console.log(Data);
+      // console.log(Data.first);
+
+    };
+    
+    request.open('GET', 'http://www.wikalenda.com/feed/main/th/1/2/1/');
+    request.send();
+
+
+    // return fetch('https://facebook.github.io/react-native/movies.json')
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+
+    //     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    //     this.setState({
+    //       isLoading: false,
+    //       dataSource: ds.cloneWithRows(responseJson.movies),
+    //     }, function() {
+    //       // do something with new state
+    //       console.log('componentDidMount')
+    //     });
+
+    //     // console.log(responseJson)
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   }
 
   render() {
