@@ -16,6 +16,7 @@ import {
   Tab
 } from "native-base";
 
+import ListScreen from "./../ListScreen";
 import Detail from "./../Detail";
 
 export default class Home extends Component {
@@ -24,13 +25,13 @@ export default class Home extends Component {
       <Container>
       <Tabs renderTabBar={() => <ScrollableTab />}>
         <Tab heading="Tab1">
-          <Detail />
+          <ListScreen />
         </Tab>
         <Tab heading="Tab2">
-          <Detail />
+          <ListScreen />
         </Tab>
         <Tab heading="Tab3">
-          <Detail />
+          <ListScreen />
         </Tab>
         <Tab heading="Tab4">
           <Detail />
