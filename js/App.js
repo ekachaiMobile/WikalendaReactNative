@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   }
 });
 
+
 const AppNavigator = StackNavigator(
   {
     Home: { screen: Home }

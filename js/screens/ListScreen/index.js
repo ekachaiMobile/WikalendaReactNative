@@ -68,20 +68,37 @@ export default class ListScreen extends Component {
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
+      let jsonObject = null
+      var parseString = require('react-native-xml2js').parseString;
+      var xml = request.responseText
+      parseString(xml, function (err, result) {
+         if (result != null){
+            let temp = JSON.stringify(result);
 
-      var jsonResponse = JSON.parse(request.responseText.jsonResponse)
-      console.log(jsonResponse)
-      // var Data = JSON.parse(request.responseText);
-      // console.log(Data);
-      // console.log(Data.first);
+            jsonObject = JSON.parse(temp);
+            console.log(jsonObject.items.item[0].name[0]);
+         }
+      });
+
+      if(jsonObject != null){
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({
+          isLoading: false,
+          dataSource: ds.cloneWithRows(jsonObject.items.item),
+        }, function() {
+          // do something with new state
+          console.log('componentDidMount')
+        });
+      }
 
     };
     
     request.open('GET', 'http://www.wikalenda.com/feed/main/th/1/2/1/');
     request.send();
-
+    return request
 
     // return fetch('https://facebook.github.io/react-native/movies.json')
+    // return fetch('http://www.wikalenda.com/feed/main/th/1/2/1/')
     //   .then((response) => response.json())
     //   .then((responseJson) => {
 
@@ -141,11 +158,11 @@ export default class ListScreen extends Component {
             renderRow={data =>
               <ListItem thumbnail>
                 <Left>
-                  <Thumbnail square size={55} source={data.title} />
+                  <Thumbnail square size={55} source={data.name[0]} />
                 </Left>
                 <Body>
                   <Text>{data.title}</Text>
-                  <Text numberOfLines={2} note>{data.releaseYear}</Text>
+                  <Text numberOfLines={2} note>{data.name[0]}</Text>
                 </Body>
                 <Right>
                   <Button transparent>
