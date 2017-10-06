@@ -16,46 +16,6 @@ import {
   Right
 } from "native-base";
 
-const sankhadeep = require("./../../../img/contacts/sankhadeep.png");
-const supriya = require("./../../..//img/contacts/supriya.png");
-const himanshu = require("./../../..//img/contacts/himanshu.png");
-const shweta = require("./../../../img/contacts/shweta.png");
-const shruti = require("./../../../img/contacts/shruti.png");
-const shivraj = require("./../../../img/contacts/shivraj.jpg");
-
-const datas = [
-  {
-    img: sankhadeep,
-    text: "Sankhadeep",
-    note: "Its time to build a difference . ."
-  },
-  {
-    img: supriya,
-    text: "Supriya",
-    note: "One needs courage to be happy and smiling all time . . "
-  },
-  {
-    img: himanshu,
-    text: "Himanshu",
-    note: "Live a life style that matchs your vision"
-  },
-  {
-    img: shweta,
-    text: "Shweta",
-    note: "Failure is temporary, giving up makes it permanent"
-  },
-  {
-    img: shruti,
-    text: "Shruti",
-    note: "The biggest risk is a missed opportunity !!"
-  },
-  {
-    img: shivraj,
-    text: "Shivraj",
-    note: "Time changes everything . ."
-  }
-];
-
 export default class ListScreen extends Component {
   constructor(props) {
     super(props);
@@ -71,34 +31,51 @@ export default class ListScreen extends Component {
       let jsonObject = null
       var parseString = require('react-native-xml2js').parseString;
       var xml = request.responseText
+      if(xml == null || xml.length == 0 ) {
+        return
+      }
       parseString(xml, function (err, result) {
          if (result != null){
             let temp = JSON.stringify(result);
-
-            jsonObject = JSON.parse(temp);
-            console.log(jsonObject.items.item[0].name[0]);
+            if(temp != null){
+              jsonObject = JSON.parse(temp);
+               console.log(jsonObject);
+              // console.log(jsonObject.items.item[0].name[0]);
+            }
+            else{
+              alert('Server Unreachable Please try again later.')
+            }
          }
       });
-
-      if(jsonObject != null){
+      
+      if(jsonObject != null && jsonObject.items != null && jsonObject.items.item != null){
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({
           isLoading: false,
           dataSource: ds.cloneWithRows(jsonObject.items.item),
         }, function() {
           // do something with new state
-          console.log('componentDidMount')
+          console.log('bind data not working')
+        });
+      }
+      else{
+        this.setState({
+          isLoading: false,
+          dataSource: null,
+        }, function() {
         });
       }
 
     };
     
-    request.open('GET', 'http://www.wikalenda.com/feed/main/th/1/2/1/');
+    GLOBAL = require('WikalendaNativeBase/js/global');
+    let url = GLOBAL.BASE_URL +  'main/' + GLOBAL.LANGUAGE + "/" + GLOBAL.CATEID + "/" + GLOBAL.TYPEID + "/" + GLOBAL.PAGE
+    console.log('url', url)
+    request.open('GET', url);
     request.send();
     return request
 
     // return fetch('https://facebook.github.io/react-native/movies.json')
-    // return fetch('http://www.wikalenda.com/feed/main/th/1/2/1/')
     //   .then((response) => response.json())
     //   .then((responseJson) => {
 
@@ -137,43 +114,50 @@ export default class ListScreen extends Component {
     //   );
     // };
 
-    return (
-      <Container> 
-        {/* <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
+    if (!this.state.dataSource) {
+      return(
+        <View style={{flex: 1, paddingTop: 0}}>
+        </View>
+      );
+    }else{
+      return (
+        <Container> 
+          {/* <Header>
+            <Left>
+              <Button transparent onPress={() => this.props.navigation.goBack()}>
+                <Icon name="arrow-back" />
+              </Button>
+            </Left>
 
-          <Body>
-            <Title>List Thumbnail</Title>
-          </Body>
-          <Right />
-        </Header> */}
+            <Body>
+              <Title>List Thumbnail</Title>
+            </Body>
+            <Right />
+          </Header> */}
 
-        <Content>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={data =>
-              <ListItem thumbnail>
-                <Left>
-                  <Thumbnail square size={55} source={data.name[0]} />
-                </Left>
-                <Body>
-                  <Text>{data.title}</Text>
-                  <Text numberOfLines={2} note>{data.name[0]}</Text>
-                </Body>
-                <Right>
-                  <Button transparent>
-                    <Text>View</Text>
-                  </Button>
-                </Right>
-              </ListItem>}
-          />
-        </Content>
-      </Container>
-    );
+          <Content>
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={data =>
+                <ListItem thumbnail>
+                  <Left>
+                    <Thumbnail square size={55} source={{uri: (data == null)? '': data.image[0]}} />
+                  </Left>
+                  <Body>
+                    <Text numberOfLines={1} note>{(data == null)? '':data.name[0]}</Text>
+                    <Text numberOfLines={2} note>{(data == null)? '':data.info[0] + data.info2[0]}</Text>
+                  </Body>
+                  {/* <Right>
+                    <Button transparent>
+                      <Text>View</Text>
+                    </Button>
+                  </Right> */}
+                </ListItem>}
+            />
+          </Content>
+        </Container>
+      );
+    }
   }
   
 }
