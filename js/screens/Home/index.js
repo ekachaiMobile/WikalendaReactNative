@@ -17,29 +17,56 @@ import {
 } from "native-base";
 
 import ListScreen from "./../ListScreen";
+import HotelListScreen from "./../HotelListScreen";
 import Detail from "./../Detail";
 
 export default class Home extends Component {
   render() {
+    const resizeMode = 'cover';
     return (
-      <Container>
-      <Tabs renderTabBar={() => <ScrollableTab />}>
-        <Tab heading="Tab1">
-          <ListScreen />
-        </Tab>
-        <Tab heading="Tab2">
-          <ListScreen />
-        </Tab>
-        <Tab heading="Tab3">
-          <ListScreen />
-        </Tab>
-        <Tab heading="Tab4">
-          <Detail />
-        </Tab>
-        <Tab heading="Tab5">
-          <Detail />
-        </Tab>
-      </Tabs>
+      
+      <Container> 
+        <Image
+        style={{
+          flex: 1,
+          width: null,
+          height: null,
+        }}
+        source={require("./../../../img/intro_bg_intro.png")}
+        >
+        <Tabs 
+        renderTabBar={() => <ScrollableTab />}>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="Tab1">
+            <ListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="Tab2">
+            <HotelListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="Tab3">
+            <ListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="Tab4">
+            <Detail />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="Tab5">
+            <Detail />
+          </Tab>
+        </Tabs>
+
+        </Image>
+
+        
+      
     </Container>
 
       // <View style={styles.container}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, View } from 'react-native';
+import { ActivityIndicator, ListView, View,StyleSheet,TouchableHighlight,Image,Alert } from 'react-native';
 import {
   Container,
   Header,
@@ -15,6 +15,7 @@ import {
   Body,
   Right
 } from "native-base";
+
 
 export default class ListScreen extends Component {
   constructor(props) {
@@ -121,7 +122,7 @@ export default class ListScreen extends Component {
       );
     }else{
       return (
-        <Container> 
+        <Container style= {{ backgroundColor :'transparent'}} > 
           {/* <Header>
             <Left>
               <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -135,11 +136,12 @@ export default class ListScreen extends Component {
             <Right />
           </Header> */}
 
-          <Content>
+          <Content style= {{ backgroundColor :'transparent'}}>
             <ListView
+              style= {{ backgroundColor :'transparent'}}
               dataSource={this.state.dataSource}
               renderRow={data =>
-                <ListItem thumbnail>
+                <ListItem thumbnail style= {{ backgroundColor :'transparent'}} >
                   <Left>
                     <Thumbnail square size={55} source={{uri: (data == null)? '': data.image[0]}} />
                   </Left>
@@ -153,11 +155,53 @@ export default class ListScreen extends Component {
                     </Button>
                   </Right> */}
                 </ListItem>}
-            />
+            /> 
           </Content>
+          <View style={stylesee.bottomee}>
+            <TouchableHighlight style={stylesee.buttonStyle}
+                                      onPress={() => { 
+                                            {
+                                              GLOBAL = require('WikalendaNativeBase/js/global');
+                                              GLOBAL.TYPEID  = '0'
+                                              this.componentDidMount()
+                                            }
+                                      }} >
+                <Image 
+                style={{width: 100, height: 30}}
+                resizeMode={Image.resizeMode.cover}
+                source={require("./../../../img/current.png")}/> 
+            </TouchableHighlight>
+            <TouchableHighlight style={stylesee.buttonStyle}
+                                      onPress={() => { 
+                                          GLOBAL = require('WikalendaNativeBase/js/global');
+                                          GLOBAL.TYPEID  = '1'
+                                          this.componentDidMount()
+                                      }} >
+                <Image 
+                style={{width: 100, height: 30}}
+                resizeMode={Image.resizeMode.cover}
+                source={require("./../../../img/upcoming.png")}/> 
+            </TouchableHighlight>
+          </View>
         </Container>
       );
     }
   }
   
 }
+
+const stylesee = StyleSheet.create({
+  bottomee: {
+    flex: 0.08,
+    alignItems:'center',
+    justifyContent:'center',
+    backgroundColor:'transparent',
+    flexDirection:'row',
+  },
+  buttonStyle: {
+    marginBottom: 5,
+    backgroundColor: 'transparent',
+    opacity: 1.0
+  },
+});
+
