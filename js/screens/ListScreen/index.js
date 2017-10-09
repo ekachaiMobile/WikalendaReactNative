@@ -22,7 +22,9 @@ export default class ListScreen extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      dataSource: null
+      dataSource: null,
+      monthButton: require("./../../../img/current.png"),
+      upcomingButton:require("./../../../img/upcoming.png")
     }
   }
   componentDidMount() {
@@ -158,36 +160,44 @@ export default class ListScreen extends Component {
             /> 
           </Content>
           <View style={stylesee.bottomee}>
-            <TouchableHighlight style={stylesee.buttonStyle}
-                                      onPress={() => { 
-                                            {
-                                              GLOBAL = require('WikalendaNativeBase/js/global');
-                                              GLOBAL.TYPEID  = '0'
-                                              this.componentDidMount()
-                                            }
-                                      }} >
+            <TouchableHighlight style = {stylesee.buttonStyle}
+                                onPress = {() => { { this.currentMonthOnPress()} }} >
                 <Image 
                 style={{width: 100, height: 30}}
                 resizeMode={Image.resizeMode.cover}
-                source={require("./../../../img/current.png")}/> 
+                source={this.state.monthButton}/> 
             </TouchableHighlight>
             <TouchableHighlight style={stylesee.buttonStyle}
-                                      onPress={() => { 
-                                          GLOBAL = require('WikalendaNativeBase/js/global');
-                                          GLOBAL.TYPEID  = '1'
-                                          this.componentDidMount()
-                                      }} >
+                                      onPress={() => { this.upcomingOnPress() }} >
                 <Image 
                 style={{width: 100, height: 30}}
                 resizeMode={Image.resizeMode.cover}
-                source={require("./../../../img/upcoming.png")}/> 
+                source={this.state.upcomingButton}/> 
             </TouchableHighlight>
           </View>
         </Container>
       );
     }
   }
-  
+
+  currentMonthOnPress() {
+    GLOBAL = require('WikalendaNativeBase/js/global');
+    GLOBAL.TYPEID  = '0'
+    this.setState({
+        monthButton: require("./../../../img/current.png"),
+        upcomingButton: require("./../../../img/upcoming.png"),
+    })
+    this.componentDidMount()
+  }
+  upcomingOnPress(){
+    GLOBAL = require('WikalendaNativeBase/js/global');
+    GLOBAL.TYPEID  = '1'
+    this.setState({
+      monthButton: require("./../../../img/current_active.png"),
+      upcomingButton: require("./../../../img/upcoming_active.png"),
+  })
+    this.componentDidMount()
+  }
 }
 
 const stylesee = StyleSheet.create({

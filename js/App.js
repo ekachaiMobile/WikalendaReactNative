@@ -32,7 +32,7 @@ import Home from "./screens/Home";
 const styles = StyleSheet.create({
   buttonStyle: {
       padding: 10,
-      backgroundColor: '#00000000',
+      backgroundColor: 'transparent',
       opacity: 1.0
   }
 });
