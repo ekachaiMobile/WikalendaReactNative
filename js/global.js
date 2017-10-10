@@ -7,7 +7,6 @@
 module.exports = {
     BASE_URL: 'http://www.wikalenda.com/feed/',
     LANGUAGE: 'th',
-    CATEID: '1', // 1-8 = event , 9-13 = travel
     TYPEID: '0', // 0 current , 1 upcoming
     PAGE: '1',
     COLOR: {

@@ -6,7 +6,7 @@ export default class HotelListScreen extends ListScreen {
     this.state = {
       isLoading: true,
       dataSource: null,
-      cateID:'10',
+      cateID:'5',
       monthButton: require("./../../../img/current.png"),
       upcomingButton:require("./../../../img/upcoming.png")
     }

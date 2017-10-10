@@ -1,12 +1,13 @@
+
 import ListScreen from "./../ListScreen";
 
-export default class HotelListScreen extends ListScreen {
+export default class FairsListScreen extends ListScreen {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
       dataSource: null,
-      cateID:'10',
+      cateID:'2',
       monthButton: require("./../../../img/current.png"),
       upcomingButton:require("./../../../img/upcoming.png")
     }

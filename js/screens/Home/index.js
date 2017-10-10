@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  ImageBackground,
   Right,
   Button,
   Icon,
@@ -19,9 +20,21 @@ import {
 } from "native-base";
 
 import ListScreen from "./../ListScreen";
-import ListScreen2 from "./../ListScreen";
+import ExhibitionListScreen from "./../ExhibitionListScreen";
+import FairsListScreen from "./../FairsListScreen";
+import FestivalsListScreen from "./../FestivalsListScreen";
+import ConventionsListScreen from "./../ConventionsListScreen";
+import ShowListScreen from "./../ShowListScreen";
+import ConcertsListScreen from "./../ConcertsListScreen";
+import ArtgallriesListScreen from "./../ArtgallriesListScreen";
+import SportsListScreen from "./../SportsListScreen";
 
+import AttractionsListScreen from "./../AttractionsListScreen";
 import HotelListScreen from "./../HotelListScreen";
+import EatdrinkListScreen from "./../EatdrinkListScreen";
+import MedicalListScreen from "./../MedicalListScreen";
+import TravelListScreen from "./../TravelListScreen";
+
 import Detail from "./../Detail";
 
 var width_screen = Dimensions.get('window').width;
@@ -41,7 +54,7 @@ export default class Home extends Component {
     return (
       
       <Container> 
-        <Image
+        <ImageBackground
         style={{
           flex: 1,
           width: null,
@@ -76,7 +89,7 @@ export default class Home extends Component {
             </TouchableHighlight>
           </View>
 
-     </Image>
+     </ImageBackground>
 
     </Container>
     );
@@ -86,57 +99,81 @@ export default class Home extends Component {
     return <Text  style= {{ marginTop : 55 ,}}> Map Render </Text>
   } 
   renderList(){
-    return  <Tabs style= {{ marginTop : 45 ,}}
-    renderTabBar={() => <ScrollableTab />}>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="EXHIBITION">
-        <ListScreen />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="FAIRS">
-
-        <ListScreen />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="FESTIVALS">
-      {this.selectCate('9')}
-        <ListScreen2 />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="CONVENTIONS">
-        <HotelListScreen />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="SHOW">
-        <Detail />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="CONCERTS">
-        <Detail />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="ART GALLRIES">
-        <Detail />
-      </Tab>
-      <Tab 
-      style= {{ backgroundColor :'transparent'}}
-      heading="SPOTS">
-        <Detail />
-      </Tab>
-    </Tabs>
+    if (this.state.currentTab == 'event'){
+        return  <Tabs style= {{ marginTop : 45 ,}}
+        renderTabBar={() => <ScrollableTab />}>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="EXHIBITION">
+            <ExhibitionListScreen></ExhibitionListScreen>
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="FAIRS">
+            <FairsListScreen/>
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="FESTIVALS">
+            <FestivalsListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="CONVENTIONS">
+            <ConventionsListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="SHOW">
+            <ShowListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="CONCERTS">
+            <ConcertsListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="ART GALLRIES">
+            <ArtgallriesListScreen />
+          </Tab>
+          <Tab 
+          style= {{ backgroundColor :'transparent'}}
+          heading="SPOTS">
+            <SportsListScreen />
+          </Tab>
+        </Tabs>
+    }else{
+      return <Tabs style= {{ marginTop : 45 ,}}
+      renderTabBar={() => <ScrollableTab />}>
+        <Tab 
+        style= {{ backgroundColor :'transparent'}}
+        heading="ATTRACTIONS">
+          <AttractionsListScreen/>
+        </Tab>
+        <Tab 
+        style= {{ backgroundColor :'transparent'}}
+        heading="HOTELS">
+          <HotelListScreen/>
+        </Tab>
+        <Tab 
+        style= {{ backgroundColor :'transparent'}}
+        heading="EAT&DRINK">
+          <EatdrinkListScreen />
+        </Tab>
+        <Tab 
+        style= {{ backgroundColor :'transparent'}}
+        heading="MEDICAL&SPA">
+          <MedicalListScreen />
+        </Tab>
+        <Tab 
+        style= {{ backgroundColor :'transparent'}}
+        heading="TRAVEL&ROUTE">
+          <TravelListScreen />
+        </Tab>
+      </Tabs>
+    }
   } 
-
-  selectCate(cateID){
-    GLOBAL = require('WikalendaNativeBase/js/global');
-    GLOBAL.CATEID  = cateID
-  }
 
   eventOnPress() {
     this.setState({

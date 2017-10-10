@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, View,StyleSheet,TouchableHighlight,Image,Alert } from 'react-native';
+import { ActivityIndicator, ListView, View,StyleSheet,TouchableHighlight,Image,ImageBackground,Alert } from 'react-native';
 import {
   Container,
   Header,
@@ -16,19 +16,19 @@ import {
   Right
 } from "native-base";
 
-
 export default class ListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
       dataSource: null,
+      cateID:'0',
       monthButton: require("./../../../img/current.png"),
       upcomingButton:require("./../../../img/upcoming.png")
     }
   }
-  componentDidMount() {
 
+  componentDidMount() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
       let jsonObject = null
@@ -42,7 +42,7 @@ export default class ListScreen extends Component {
             let temp = JSON.stringify(result);
             if(temp != null){
               jsonObject = JSON.parse(temp);
-               console.log(jsonObject);
+              console.log(jsonObject);
               // console.log(jsonObject.items.item[0].name[0]);
             }
             else{
@@ -72,7 +72,7 @@ export default class ListScreen extends Component {
     };
     
     GLOBAL = require('WikalendaNativeBase/js/global');
-    let url = GLOBAL.BASE_URL +  'main/' + GLOBAL.LANGUAGE + "/" + GLOBAL.CATEID + "/" + GLOBAL.TYPEID + "/" + GLOBAL.PAGE
+    let url = GLOBAL.BASE_URL +  'main/' + GLOBAL.LANGUAGE + "/" + this.state.cateID + "/" + GLOBAL.TYPEID + "/" + GLOBAL.PAGE
     console.log('url', url)
     request.open('GET', url);
     request.send();
@@ -119,12 +119,30 @@ export default class ListScreen extends Component {
 
     if (!this.state.dataSource) {
       return(
-        <View style={{flex: 1, paddingTop: 0}}>
+        <View style={{flex: 1.0, paddingTop: 0}}>
+          <View style={{flex: 0.92, paddingTop: 0}}></View>
+          <View style={stylesee.bottomee}>
+            <TouchableHighlight style = {stylesee.buttonStyle}
+                                onPress = {() => { { this.currentMonthOnPress()} }} >
+                <Image 
+                style={{width: 100, height: 30}}
+                resizeMode={Image.resizeMode.cover}
+                source={this.state.monthButton}/> 
+            </TouchableHighlight>
+            <TouchableHighlight style={stylesee.buttonStyle}
+                                      onPress={() => { this.upcomingOnPress() }} >
+                <Image 
+                style={{width: 100, height: 30}}
+                resizeMode={Image.resizeMode.cover}
+                source={this.state.upcomingButton}/> 
+            </TouchableHighlight>
+          </View>
+      
         </View>
       );
     }else{
       return (
-        <Container style= {{ backgroundColor :'transparent'}} > 
+        <Container style= {{ backgroundColor :'transparent',}} > 
           {/* <Header>
             <Left>
               <Button transparent onPress={() => this.props.navigation.goBack()}>

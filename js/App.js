@@ -55,6 +55,8 @@ const AppNavigator = StackNavigator(
       headerRight: <TouchableHighlight style={styles.buttonStyle}
                                       onPress={() => { Alert.alert('Change Lan!');
                                                       console.log("on Press!");
+                                                      // GLOBAL = require('WikalendaNativeBase/js/global');
+                                                      // GLOBAL.LANGUAGE  = 'en'
                                       }} >
                      <Image source={require("./../img/search_language_bt_language_thai.png")}/> 
                     </TouchableHighlight>,
