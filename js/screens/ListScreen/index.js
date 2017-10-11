@@ -15,6 +15,7 @@ import {
   Body,
   Right
 } from "native-base";
+import Detail from "./../Detail";
 
 export default class ListScreen extends Component {
   constructor(props) {
@@ -157,25 +158,30 @@ export default class ListScreen extends Component {
           </Header> */}
 
           <Content style= {{ backgroundColor :'transparent'}}>
+          
             <ListView
               style= {{ backgroundColor :'transparent'}}
               dataSource={this.state.dataSource}
               renderRow={data =>
-                <ListItem thumbnail style= {{ backgroundColor :'transparent'}} >
-                  <Left>
-                    <Thumbnail square size={55} source={{uri: (data == null)? '': data.image[0]}} />
-                  </Left>
-                  <Body>
-                    <Text numberOfLines={1} note>{(data == null)? '':data.name[0]}</Text>
-                    <Text numberOfLines={2} note>{(data == null)? '':data.info[0] + data.info2[0]}</Text>
-                  </Body>
-                  {/* <Right>
-                    <Button transparent>
-                      <Text>View</Text>
-                    </Button>
-                  </Right> */}
-                </ListItem>}
+              
+                  <ListItem thumbnail style= {{ backgroundColor :'transparent'}} onPress={() => {this._onPressRow(data.$)}} >
+                    <Left>
+                      <Thumbnail square size={55} source={{uri: (data == null)? '': data.image[0]}} />
+                    </Left>
+                    <Body>
+                      <Text numberOfLines={1} note>{(data == null)? '':data.name[0]}</Text>
+                      <Text numberOfLines={2} note>{(data == null)? '':data.info[0] + data.info2[0]}</Text>
+                    </Body>
+                    {/* <Right>
+                      <Button transparent>
+                        <Text>View</Text>
+                      </Button>
+                    </Right> */}
+                  </ListItem>
+                
+                }
             /> 
+          
           </Content>
           <View style={stylesee.bottomee}>
             <TouchableHighlight style = {stylesee.buttonStyle}
@@ -196,6 +202,30 @@ export default class ListScreen extends Component {
         </Container>
       );
     }
+  }
+
+  _onPressRow(contentFeed) {
+    
+    //let item = JSON.parse(contentFeed);
+    console.log(contentFeed.cat[0]);
+    //Alert.alert('555');
+
+    var LoginView = new Detail()
+    // this.props.navigation('Detail')
+
+    // this.props.navigator.replace({
+    //   component: LoginView,
+    //   title: 'Detail',
+    // })
+
+    this.props.navigator.push({
+      component: LoginView,
+      passProps: {
+        name: LoginView
+      }
+    })
+
+
   }
 
   currentMonthOnPress() {

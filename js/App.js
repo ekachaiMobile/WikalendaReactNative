@@ -7,7 +7,8 @@ import {
   Alert,
   Text,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 import { StackNavigator } from "react-navigation";
@@ -28,6 +29,7 @@ import { Root } from "native-base";
 // } from "native-base";
 
 import Home from "./screens/Home";
+import Detail from "./screens/Detail";
 
 const styles = StyleSheet.create({
   buttonStyle: {
@@ -40,7 +42,8 @@ const styles = StyleSheet.create({
 
 const AppNavigator = StackNavigator(
   {
-    Home: { screen: Home }
+    Home: { screen: Home },
+    Detail: { screen: Detail }
   }, 
 
   // { headerMode: 'none' },
@@ -50,7 +53,7 @@ const AppNavigator = StackNavigator(
       activeTintColor: "#e91e63"
     },
     navigationOptions: {
-      title: <Image source={require("./../img/logo_header.png")}/>  ,
+      title: <Image style ={(Platform.OS === 'ios') ? {width: 150, height: 30} : {width: 320, height: 69}}  source={require("./../img/logo_header.png")}/>  ,
       headerTitleStyle: { color: '#aaa' },
       headerRight: <TouchableHighlight style={styles.buttonStyle}
                                       onPress={() => { Alert.alert('Change Lan!');

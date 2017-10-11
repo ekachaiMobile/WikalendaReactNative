@@ -36,6 +36,7 @@ import MedicalListScreen from "./../MedicalListScreen";
 import TravelListScreen from "./../TravelListScreen";
 
 import Detail from "./../Detail";
+import MapScreen from "./../Map";
 
 var width_screen = Dimensions.get('window').width;
 
@@ -51,8 +52,8 @@ export default class Home extends Component {
   }
   render() {
     const resizeMode = 'cover';
+    
     return (
-      
       <Container> 
         <ImageBackground
         style={{
@@ -80,13 +81,13 @@ export default class Home extends Component {
                 resizeMode={Image.resizeMode.cover}
                 source={this.state.travelButton}/> 
             </TouchableHighlight>
-            <TouchableHighlight style={styles.buttonStyle}
+              <TouchableHighlight style={styles.buttonStyle}
                                       onPress={() => { this.nearbyOnPress() }} >
                 <Image 
                 style={{width: width_screen*0.34, height: 50}}
                 resizeMode={Image.resizeMode.cover}
                 source={this.state.mapButton}/> 
-            </TouchableHighlight>
+            </TouchableHighlight> 
           </View>
 
      </ImageBackground>
@@ -96,48 +97,80 @@ export default class Home extends Component {
   }
 
   renderMap(){
-    return <Text  style= {{ marginTop : 55 ,}}> Map Render </Text>
+    return <MapScreen/>
   } 
   renderList(){
     if (this.state.currentTab == 'event'){
-        return  <Tabs style= {{ marginTop : 45 ,}}
+        return  <Tabs style= {{ marginTop : 45 ,backgroundColor :'#ffffff' ,}}
         renderTabBar={() => <ScrollableTab />}>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="EXHIBITION">
             <ExhibitionListScreen></ExhibitionListScreen>
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="FAIRS">
             <FairsListScreen/>
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="FESTIVALS">
             <FestivalsListScreen />
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="CONVENTIONS">
             <ConventionsListScreen />
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="SHOW">
             <ShowListScreen />
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="CONCERTS">
             <ConcertsListScreen />
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="ART GALLRIES">
             <ArtgallriesListScreen />
           </Tab>
           <Tab 
+          tabStyle= {{backgroundColor: '#0E6D90'}}
+          textStyle={{color: '#fff'}}
+          activeTabStyle={{backgroundColor: '#0E6D90'}}
+          activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="SPOTS">
             <SportsListScreen />
@@ -147,26 +180,46 @@ export default class Home extends Component {
       return <Tabs style= {{ marginTop : 45 ,}}
       renderTabBar={() => <ScrollableTab />}>
         <Tab 
+        tabStyle= {{backgroundColor: '#0E6D90'}}
+        textStyle={{color: '#fff'}}
+        activeTabStyle={{backgroundColor: '#0E6D90'}}
+        activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="ATTRACTIONS">
           <AttractionsListScreen/>
         </Tab>
         <Tab 
+        tabStyle= {{backgroundColor: '#0E6D90'}}
+        textStyle={{color: '#fff'}}
+        activeTabStyle={{backgroundColor: '#0E6D90'}}
+        activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="HOTELS">
           <HotelListScreen/>
         </Tab>
         <Tab 
+        tabStyle= {{backgroundColor: '#0E6D90'}}
+        textStyle={{color: '#fff'}}
+        activeTabStyle={{backgroundColor: '#0E6D90'}}
+        activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="EAT&DRINK">
           <EatdrinkListScreen />
         </Tab>
         <Tab 
+        tabStyle= {{backgroundColor: '#0E6D90'}}
+        textStyle={{color: '#fff'}}
+        activeTabStyle={{backgroundColor: '#0E6D90'}}
+        activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="MEDICAL&SPA">
           <MedicalListScreen />
         </Tab>
         <Tab 
+        tabStyle= {{backgroundColor: '#0E6D90'}}
+        textStyle={{color: '#fff'}}
+        activeTabStyle={{backgroundColor: '#0E6D90'}}
+        activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="TRAVEL&ROUTE">
           <TravelListScreen />
@@ -230,5 +283,14 @@ const styles = StyleSheet.create({
     backgroundColor:'transparent',
     flexDirection:'row',
     position: 'absolute',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#ddd',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
   },
 });
