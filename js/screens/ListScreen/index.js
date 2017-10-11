@@ -121,7 +121,7 @@ export default class ListScreen extends Component {
     if (!this.state.dataSource) {
       return(
         <View style={{flex: 1.0, paddingTop: 0}}>
-          <View style={{flex: 0.92, paddingTop: 0}}></View>
+          <View style={{flex: 0.92, paddingTop: 0 , alignItems:'center',justifyContent:'center'}}><Text>ไม่พบข้อมูล</Text></View>
           <View style={stylesee.bottomee}>
             <TouchableHighlight style = {stylesee.buttonStyle}
                                 onPress = {() => { { this.currentMonthOnPress()} }} >
