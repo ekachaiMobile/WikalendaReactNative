@@ -10,7 +10,9 @@ import {
   Button,
   Icon,
   TouchableHighlight,
-  Dimensions
+  Dimensions,
+  Platform,
+  Alert
 } from 'react-native';
 import {
   Container,
@@ -18,6 +20,7 @@ import {
   Tabs,
   Tab
 } from "native-base";
+import { StackNavigator } from 'react-navigation';
 
 import ListScreen from "./../ListScreen";
 import ExhibitionListScreen from "./../ExhibitionListScreen";
@@ -41,14 +44,34 @@ import MapScreen from "./../Map";
 var width_screen = Dimensions.get('window').width;
 
 export default class Home extends Component {
+  static navigationOptions = {
+    headerTitle: (
+      <Image style ={ {width: 150, height: 30 , marginLeft: 10} }  source={require("./../../../img/logo_header.png")}/>
+    ),
+    headerRight:(
+      <TouchableHighlight style={ {marginRight: 10}}
+          onPress={() => { Alert.alert('React javascript cross platform');
+  
+                          // GLOBAL = require('WikalendaNativeBase/js/global');
+                          // GLOBAL.LANGUAGE  = 'en'
+          }} >
+          <Image source={require("./../../../img/search_language_bt_language_thai.png")}/> 
+      </TouchableHighlight>
+    ),
+
+  }
   constructor(props) {
     super(props);
+    this.execChildFunct=this.execChildFunct.bind(this)
     this.state = {
       eventButton: require("./../../../img/menu_bt_event_active.png"),
       travelButton:require("./../../../img/menu_bt_travel.png"),
       mapButton:require("./../../../img/menu_bt_map.png"),
       currentTab: 'event'
     }
+  }
+  execChildFunct() {
+    this.props.navigation.navigate('NestedNavigator');
   }
   render() {
     const resizeMode = 'cover';
@@ -65,7 +88,7 @@ export default class Home extends Component {
         >
 
         {this.state.currentTab == 'nearby' ? this.renderMap() : this.renderList()}
-
+       
         <View style={styles.bottomee}>
             <TouchableHighlight style={styles.buttonStyle}
                                       onPress={() => { { this.eventOnPress()} }} >
@@ -225,6 +248,7 @@ export default class Home extends Component {
           <TravelListScreen />
         </Tab>
       </Tabs>
+      
     }
   } 
 
@@ -245,12 +269,13 @@ export default class Home extends Component {
     })
   }
   nearbyOnPress() {
-    this.setState({
-      eventButton: require("./../../../img/menu_bt_event.png"),
-      travelButton:require("./../../../img/menu_bt_travel.png"),
-      mapButton:require("./../../../img/menu_bt_map_active.png"),
-      currentTab:'nearby'
-    })
+    // this.setState({
+    //   eventButton: require("./../../../img/menu_bt_event.png"),
+    //   travelButton:require("./../../../img/menu_bt_travel.png"),
+    //   mapButton:require("./../../../img/menu_bt_map_active.png"),
+    //   currentTab:'nearby'
+    // })
+     this.props.navigation.navigate('Detail');
   }
 
 }

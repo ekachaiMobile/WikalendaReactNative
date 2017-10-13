@@ -210,22 +210,23 @@ export default class ListScreen extends Component {
     console.log(contentFeed.cat[0]);
     //Alert.alert('555');
 
-    var LoginView = new Detail()
-    // this.props.navigation('Detail')
+    // var LoginView = new Detail()
+    // // this.props.navigation('Detail')
 
-    // this.props.navigator.replace({
+    // // this.props.navigator.replace({
+    // //   component: LoginView,
+    // //   title: 'Detail',
+    // // })
+
+    // this.props.navigator.push({
     //   component: LoginView,
-    //   title: 'Detail',
+    //   passProps: {
+    //     name: LoginView
+    //   }
     // })
 
-    this.props.navigator.push({
-      component: LoginView,
-      passProps: {
-        name: LoginView
-      }
-    })
-
-
+    // this.props.navigation.navigate('NestedNavigator');
+    this.props.onPress
   }
 
   currentMonthOnPress() {

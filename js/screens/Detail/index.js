@@ -7,22 +7,30 @@ import {
   Image,
   Right,
   Button,
-  Icon
+  Icon,
+  Platform
 } from 'react-native';
+import { StackNavigator } from 'react-navigation'
 
 export default class Detail extends Component {
+  static navigationOptions = {
+    headerTitle: (
+      <Image style ={ {width: 150, height: 30 , marginLeft: 10} }  source={require("./../../../img/logo_header.png")}/>
+    ),
+  }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native! This is Detail
+          Welcome to React Native!{'\n'}{'\n'}
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          Learn once, write anywhere: Build mobile apps with React{'\n'}
         </Text>
+         <Image style ={ {justifyContent: 'center'} }  source={require("./../../../img/react_logo.png")}/> 
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        {'\n'} React Native lets you build mobile apps using only JavaScript. {'\n'} It uses the same design as React, letting you compose a rich mobile UI from declarative components.
+
         </Text>
       </View>
     );
@@ -37,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 24,
     textAlign: 'center',
     margin: 10,
   },

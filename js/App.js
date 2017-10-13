@@ -39,36 +39,35 @@ const styles = StyleSheet.create({
   }
 });
 
-
 const AppNavigator = StackNavigator(
   {
     Home: { screen: Home },
     Detail: { screen: Detail }
   }, 
 
-  // { headerMode: 'none' },
+  { headerMode: 'screen'},
   {
     initialRouteName: "Home",
     contentOptions: {
       activeTintColor: "#e91e63"
     },
-    navigationOptions: {
-      title: <Image style ={(Platform.OS === 'ios') ? {width: 150, height: 30} : {width: 320, height: 69}}  source={require("./../img/logo_header.png")}/>  ,
-      headerTitleStyle: { color: '#aaa' },
-      headerRight: <TouchableHighlight style={styles.buttonStyle}
-                                      onPress={() => { Alert.alert('Change Lan!');
-                                                      console.log("on Press!");
-                                                      // GLOBAL = require('WikalendaNativeBase/js/global');
-                                                      // GLOBAL.LANGUAGE  = 'en'
-                                      }} >
-                     <Image source={require("./../img/search_language_bt_language_thai.png")}/> 
-                    </TouchableHighlight>,
-                  // <Button title="Info"
-                  //         onPress={() => { Alert.alert('Change Lan!');
-                  //                         console.log("on Press!");
-                  //         }} >
-                  //  </Button>,
-    },
+    // navigationOptions: {
+    //   title: <Image style ={(Platform.OS === 'ios') ? {width: 150, height: 30} : {width: 320, height: 69}}  source={require("./../img/logo_header.png")}/>  ,
+    //   headerTitleStyle: { color: '#aaa' },
+    //   headerRight: <TouchableHighlight style={styles.buttonStyle}
+    //                                   onPress={() => { Alert.alert('Change Lan!');
+    //                                                   console.log("on Press!");
+    //                                                   // GLOBAL = require('WikalendaNativeBase/js/global');
+    //                                                   // GLOBAL.LANGUAGE  = 'en'
+    //                                   }} >
+    //                  <Image source={require("./../img/search_language_bt_language_thai.png")}/> 
+    //                 </TouchableHighlight>,
+    //               // <Button title="Info"
+    //               //         onPress={() => { Alert.alert('Change Lan!');
+    //               //                         console.log("on Press!");
+    //               //         }} >
+    //               //  </Button>,
+    // },
 
   } 
   
