@@ -1,5 +1,4 @@
 import ListScreen from "./../ListScreen";
-
 export default class HotelListScreen extends ListScreen {
   constructor(props) {
     super(props);

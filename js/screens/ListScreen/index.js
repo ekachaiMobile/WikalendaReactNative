@@ -226,7 +226,8 @@ export default class ListScreen extends Component {
     // })
 
     // this.props.navigation.navigate('NestedNavigator');
-    this.props.onPress
+    // this.props.navigation.navigate('Detail');
+    this.props.onRowPress(contentFeed);
   }
 
   currentMonthOnPress() {

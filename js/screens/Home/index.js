@@ -62,17 +62,20 @@ export default class Home extends Component {
   }
   constructor(props) {
     super(props);
-    this.execChildFunct=this.execChildFunct.bind(this)
     this.state = {
       eventButton: require("./../../../img/menu_bt_event_active.png"),
       travelButton:require("./../../../img/menu_bt_travel.png"),
       mapButton:require("./../../../img/menu_bt_map.png"),
       currentTab: 'event'
     }
+    this.onRowPress = this.onRowPress.bind(this);
   }
-  execChildFunct() {
-    this.props.navigation.navigate('NestedNavigator');
+
+  onRowPress(infoData) {
+    console.log('info  :',infoData)
+    this.props.navigation.navigate('Detail', { info: infoData } );
   }
+
   render() {
     const resizeMode = 'cover';
     
@@ -133,7 +136,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="EXHIBITION">
-            <ExhibitionListScreen></ExhibitionListScreen>
+            <ExhibitionListScreen onRowPress={this.onRowPress}></ExhibitionListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -142,7 +145,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="FAIRS">
-            <FairsListScreen/>
+            <FairsListScreen onRowPress={this.onRowPress}></FairsListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -151,7 +154,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="FESTIVALS">
-            <FestivalsListScreen />
+          <FestivalsListScreen onRowPress={this.onRowPress}></FestivalsListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -160,7 +163,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="CONVENTIONS">
-            <ConventionsListScreen />
+          <ConventionsListScreen onRowPress={this.onRowPress}></ConventionsListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -169,7 +172,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="SHOW">
-            <ShowListScreen />
+          <ShowListScreen onRowPress={this.onRowPress}></ShowListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -178,7 +181,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="CONCERTS">
-            <ConcertsListScreen />
+          <ConcertsListScreen onRowPress={this.onRowPress}></ConcertsListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -187,7 +190,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="ART GALLRIES">
-            <ArtgallriesListScreen />
+          <ArtgallriesListScreen onRowPress={this.onRowPress}></ArtgallriesListScreen>
           </Tab>
           <Tab 
           tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -196,7 +199,7 @@ export default class Home extends Component {
           activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
           style= {{ backgroundColor :'transparent'}}
           heading="SPOTS">
-            <SportsListScreen />
+          <SportsListScreen onRowPress={this.onRowPress}></SportsListScreen>
           </Tab>
         </Tabs>
     }else{
@@ -209,7 +212,7 @@ export default class Home extends Component {
         activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="ATTRACTIONS">
-          <AttractionsListScreen/>
+          <AttractionsListScreen onRowPress={this.onRowPress}></AttractionsListScreen>
         </Tab>
         <Tab 
         tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -218,7 +221,7 @@ export default class Home extends Component {
         activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="HOTELS">
-          <HotelListScreen/>
+        <HotelListScreen onRowPress={this.onRowPress}></HotelListScreen>
         </Tab>
         <Tab 
         tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -227,7 +230,7 @@ export default class Home extends Component {
         activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="EAT&DRINK">
-          <EatdrinkListScreen />
+        <EatdrinkListScreen onRowPress={this.onRowPress}></EatdrinkListScreen>
         </Tab>
         <Tab 
         tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -236,7 +239,7 @@ export default class Home extends Component {
         activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="MEDICAL&SPA">
-          <MedicalListScreen />
+        <MedicalListScreen onRowPress={this.onRowPress}></MedicalListScreen>
         </Tab>
         <Tab 
         tabStyle= {{backgroundColor: '#0E6D90'}}
@@ -245,7 +248,7 @@ export default class Home extends Component {
         activeTextStyle={{color: '#fff', fontWeight: 'normal'}}
         style= {{ backgroundColor :'transparent'}}
         heading="TRAVEL&ROUTE">
-          <TravelListScreen />
+        <TravelListScreen onRowPress={this.onRowPress}></TravelListScreen>
         </Tab>
       </Tabs>
       
@@ -275,6 +278,7 @@ export default class Home extends Component {
     //   mapButton:require("./../../../img/menu_bt_map_active.png"),
     //   currentTab:'nearby'
     // })
+    console.log("this.props",this.props);
      this.props.navigation.navigate('Detail');
   }
 

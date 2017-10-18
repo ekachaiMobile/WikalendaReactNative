@@ -30,7 +30,8 @@ import { Root } from "native-base";
 
 import Home from "./screens/Home";
 import Detail from "./screens/Detail";
-
+import ListScreen from "./screens/ListScreen";
+import AttractionsListScreen from "./screens/AttractionsListScreen";
 const styles = StyleSheet.create({
   buttonStyle: {
       padding: 10,
@@ -42,7 +43,11 @@ const styles = StyleSheet.create({
 const AppNavigator = StackNavigator(
   {
     Home: { screen: Home },
-    Detail: { screen: Detail }
+    AttractionsListScreen: { screen: AttractionsListScreen },
+    
+    ListScreen: { screen: ListScreen },
+    Detail: { screen: Detail },
+    
   }, 
 
   { headerMode: 'screen'},
