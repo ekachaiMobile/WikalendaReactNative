@@ -272,14 +272,12 @@ export default class Home extends Component {
     })
   }
   nearbyOnPress() {
-    // this.setState({
-    //   eventButton: require("./../../../img/menu_bt_event.png"),
-    //   travelButton:require("./../../../img/menu_bt_travel.png"),
-    //   mapButton:require("./../../../img/menu_bt_map_active.png"),
-    //   currentTab:'nearby'
-    // })
-    console.log("this.props",this.props);
-     this.props.navigation.navigate('Detail');
+    this.setState({
+      eventButton: require("./../../../img/menu_bt_event.png"),
+      travelButton:require("./../../../img/menu_bt_travel.png"),
+      mapButton:require("./../../../img/menu_bt_map_active.png"),
+      currentTab:'nearby'
+    })
   }
 
 }

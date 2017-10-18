@@ -10,7 +10,7 @@ import {
   Icon
 } from 'react-native';
 
-export default class Detail extends Component {
+export default class Map extends Component {
   render() {
     return (
       <View style={styles.container}>
