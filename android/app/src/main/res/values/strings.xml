@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WikalendaNativeBase</string>
+    <string name="title_activity_super_main">SuperMainActivity</string>
 </resources>
