@@ -15,4 +15,5 @@ module.exports = {
       LIGHTBLUE: '#6EA8DA',
       DARKGRAY: '#999',
     },
+    DATALISTMAP: null,
   };

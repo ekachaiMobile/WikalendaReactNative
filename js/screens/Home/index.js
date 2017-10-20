@@ -123,7 +123,8 @@ export default class Home extends Component {
   }
 
   renderMap(){
-    return <MapScreen/>
+    GLOBAL = require('WikalendaNativeBase/js/global'); 
+    return <MapScreen infoMap={GLOBAL.DATALISTMAP}></MapScreen>
   } 
   renderList(){
     if (this.state.currentTab == 'event'){

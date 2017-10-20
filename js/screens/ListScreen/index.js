@@ -44,6 +44,7 @@ export default class ListScreen extends Component {
             if(temp != null){
               jsonObject = JSON.parse(temp);
               console.log(jsonObject);
+              
               // console.log(jsonObject.items.item[0].name[0]);
             }
             else{
@@ -53,6 +54,7 @@ export default class ListScreen extends Component {
       });
       
       if(jsonObject != null && jsonObject.items != null && jsonObject.items.item != null){
+        this.sendListtoHome(jsonObject.items.item)
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({
           isLoading: false,
@@ -142,6 +144,7 @@ export default class ListScreen extends Component {
         </View>
       );
     }else{
+      
       return (
         <Container style= {{ backgroundColor :'transparent',}} > 
           {/* <Header>
@@ -228,6 +231,10 @@ export default class ListScreen extends Component {
     // this.props.navigation.navigate('NestedNavigator');
     // this.props.navigation.navigate('Detail');
     this.props.onRowPress(contentFeed);
+  }
+  sendListtoHome(contentFeed) {
+    GLOBAL = require('WikalendaNativeBase/js/global');
+    GLOBAL.DATALISTMAP = contentFeed 
   }
 
   currentMonthOnPress() {

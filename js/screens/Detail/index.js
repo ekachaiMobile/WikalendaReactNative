@@ -69,8 +69,6 @@ export default class Detail extends Component {
     
     GLOBAL = require('WikalendaNativeBase/js/global');
 
-    // let url = GLOBAL.BASE_URL +  'main/' + GLOBAL.LANGUAGE + "/" + this.state.cateID + "/" + GLOBAL.TYPEID + "/" + GLOBAL.PAGE
-
     let url = GLOBAL.BASE_URL +  'detail/'+ GLOBAL.LANGUAGE  + "/" + cate_id + "/" + detail_id + "/1/"
     console.log('url', url)
     request.open('GET', url);
